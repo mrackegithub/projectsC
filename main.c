@@ -6,6 +6,7 @@
 
 int main(void)
 {
+    /*
     int a[5] = {1, 2, 3, 4, 5};
     int *pa = a;
     printf("This %d is same as \n", a[3]);//a i pa skoro isti, a je isto sto i &a[0] adresa prvog elementa.
@@ -70,6 +71,118 @@ int main(void)
         free(cur);
         cur=next;
     }
+    */
+
+    //Midterm 1
+    #define ZADATAK 4
+    //Prvi zadatak
+    #if ZADATAK == 1
+    int c;
+    char array[24];
+    for(int i=0;i<24;i++){
+        c = fgetc(stdin);
+        array[i]=c;
+        
+    }
+    for(int i=0;i<24;i++){
+        c=array[i];
+        if(('0'<=c&&c<='9')||('A'<=c&&c<='Z')){
+            printf("%c ",c);
+        }
+    }
+    #elif ZADATAK == 2
+    //Drugi zadatak
+    int squared = 0;
+    for(int i=10;i<100;i++){
+        squared = i*i;
+        if(i==(squared%100)){
+            printf("%d is automorphic\n",i);
+        }
+    }
+
+    #elif ZADATAK == 3
     
+    float input;
+    scanf("%f",&input);
+    float min = input;
+    int low =0;
+    int med = 0;
+    int high = 0;
+    while(input!=-1.0){
+        if(input<2){
+            low++;
+        } else if(input < 3.5){
+            med++;
+        } else {
+            high++;
+        }
+        if(input<min){
+            min=input;
+        }
+        scanf("%f",&input);
+    }
+    printf("Low: %d\nMedium: %d\nHigh: %d\nMinimum: %.01f\n",low,med,high,min);
+
+    #elif ZADATAK == 4
+
+    struct attendee{
+        char name[30];
+        char email[50];
+        int attended;
+    };
+    struct attendee niz[12];
+    char n[30];
+    char e[50];
+    int a;
+    printf("For the next 12 lines fill in the data in the format [name] [email] [0 for skipped/ 1 for attended]\n");
+    for(int i=0;i<12;i++){
+        scanf(" %s %s %d",niz[i].name,niz[i].email,&niz[i].attended);
+    }
+    while (fgetc(stdin) != '\n'); 
+    
+    while(1){
+        printf("For listing atendees send 1, for marking attendance send 2, to exit send 0\n");
+        int choice;
+        scanf(" %d", &choice);
+        if(choice=='1'){
+            for(int i=0;i<12;i++){
+                if(niz[i].attended){
+                    printf("%s\n",niz[i].name);
+                }
+            }
+        } else if(choice=='2'){
+            printf("Enter the name of attendee to mark them present\n");
+            char input[30];
+            scanf(" %s",input);
+            char s = 0;
+            for(int i=0;i<12;i++){
+                
+                if(strcmp(niz[i].name,input)==0){
+                    niz[i].attended=1;
+                    s=1;
+                    break;
+                }
+            }
+            if(!s){
+                printf("Invalid name\n");
+            }
+        } else if(choice=='0'){return 0;}
+        else {printf("Invalid choice\n");}
+    }
+    
+
+
+
+    //Midterm 2
+    #elif ZADATAK == 5
+
+
+
+
+
+
+
+
+    #endif
     return 0;
 }
