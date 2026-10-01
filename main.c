@@ -1,6 +1,6 @@
 #include "def.h"
 #define square(x) (x)*(x)
-
+#include <time.h>
 
 
 
@@ -72,9 +72,11 @@ int main(void)
         cur=next;
     }
     */
+    
+
 
     //Midterm 1
-    #define ZADATAK 4
+    #define ZADATAK 7
     //Prvi zadatak
     #if ZADATAK == 1
     int c;
@@ -173,14 +175,55 @@ int main(void)
 
 
 
-    //Midterm 2
+    //st1
     #elif ZADATAK == 5
+    //#include <stdio.h> already in the header
+    int base;
+    int exp;
+    int res=1;
+    printf("Please enter base: ");
+    scanf(" %d",&base);
+    printf("Please enter exponent: ");
+    scanf(" %d",&exp);
+    for(int i =0;i<exp;i++){
+        res*=base;
+    }
+    printf("Result is %d", res);
+    //make more efficent log time algo
+    #elif ZADATAK == 6
+    
 
+    printf("enter two positive integers,separated by space: ");
+    long long a; long long b; long long r; long long gcd;
+    
+    int status = scanf("%d %d",&a,&b);
 
+    r =a; if(a<b){a=b; b=r;} r=b;
+    a=7540113804746346429LL; b=4660046610375530309LL;
+    if(status!=2||a<1||b<1){return 1;}
+    clock_t start_time = clock();
+    for(int i=0;i<10000000;i++){
+    while(b!=0){
+        gcd =r;//same as returning a instead of gcd
+        r=a%b;
+        a=b; b= r;
+    }
+}
+    clock_t end_time = clock();
+    double time_taken = ((double)(end_time - start_time)) / CLOCKS_PER_SEC;
+    
+    printf("Time taken for 10 million runs: %f seconds\n", time_taken);
+    printf("%d",gcd);
 
-
-
-
+    #elif ZADATAK == 7
+    //factorial and square already defined, sequence is a= (n^2)!
+    printf("Number of terms u want: ");
+    int n; if(scanf("%d",&n)!=1){return 1;}
+    int sum = 0;
+    for(int i = 1;i<=n;i++){
+        sum+= factorial(square(i));
+    }
+    printf("Sum of first %d terms of sequence (a^2)! is: %d", n, sum);
 
 
     #endif
